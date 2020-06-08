@@ -78,18 +78,13 @@ void makeObstacles(){
 		case move:
 			if(top != 1 && bottom != 17){
 				top = top - 1;
-				oTop = top;
 				bottom = bottom - 1;
-				oBottom = bottom;
 			}
 			else if(top == 1){
 				top = 16;
-				oTop = 16;
-
 			}
 			else if(top == 17){
 				bottom = 32;
-				oBottom = 32;
 			}
 			break;
 	}
@@ -180,7 +175,7 @@ int main(void) {
 
     while (1) {
 	 	temp = ~PINB & 0x07;	
-	
+		if(pause == 0){
 			if(cursorTime >= 50){
 				game();
 				cursorTime = 0;
@@ -189,7 +184,7 @@ int main(void) {
 				makeObstacles();
 				obstacleTime = 0;
 			}
-		
+		}
 		while(!TimerFlag){}
 		TimerFlag = 0;
 		cursorTime += timerPeriod;
